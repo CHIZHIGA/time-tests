@@ -14,4 +14,15 @@ def test_given_input():
     ]
 
     assert result == expected
+
+def test_no_overlap():
+    """Check that two non-overlapping intervals return empty list"""
+    # 09:00–10:00  vs  10:30–11:00 → no overlap
+    morning = time_range("2010-01-12 09:00:00", "2010-01-12 10:00:00")
+    later = time_range("2010-01-12 10:30:00", "2010-01-12 11:00:00")
+
+    result = compute_overlap_time(morning, later)
+    expected = []  # no overlap expected
+
+    assert result == expected
  
