@@ -1,3 +1,4 @@
+import pytest
 from times import time_range, compute_overlap_time
 
 
@@ -40,3 +41,11 @@ def test_several_intervals():
     ]
 
     assert result == expected
+
+def test_time_range_backwards_fails():
+
+    start_time = "2024-01-01 12:00:00"
+    end_time = "2024-01-01 10:00:00" 
+
+    with pytest.raises(ValueError, match="cannot be before start_time"):
+        time_range(start_time, end_time)
